@@ -1,0 +1,13 @@
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\bin\Debug\netcoreapp3.1\frequency.exe
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\bin\Debug\netcoreapp3.1\frequency.deps.json
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\bin\Debug\netcoreapp3.1\frequency.runtimeconfig.json
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\bin\Debug\netcoreapp3.1\frequency.runtimeconfig.dev.json
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\bin\Debug\netcoreapp3.1\frequency.dll
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\bin\Debug\netcoreapp3.1\frequency.pdb
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\obj\Debug\netcoreapp3.1\frequency.AssemblyInfoInputs.cache
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\obj\Debug\netcoreapp3.1\frequency.AssemblyInfo.cs
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\obj\Debug\netcoreapp3.1\frequency.csproj.CoreCompileInputs.cache
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\obj\Debug\netcoreapp3.1\frequency.dll
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\obj\Debug\netcoreapp3.1\frequency.pdb
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\obj\Debug\netcoreapp3.1\frequency.genruntimeconfig.cache
+X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\obj\Debug\netcoreapp3.1\frequency.csprojAssemblyReference.cache
