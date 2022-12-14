@@ -37,6 +37,7 @@ namespace frequency
         {
             //ממלא את המילון לפי הקובץ
             Dic_frequency = new Dictionary<char, double>();
+            Dictionary<char, double> sort_dic = new Dictionary<char, double>();
             //קריאה לפונקציה שקוראת מהקובץ
             Exelread("letters.txt");
             //ממלא את המילון  ההחלפה לפי הקובץ
@@ -44,6 +45,7 @@ namespace frequency
             //קריאה לפונקציה שקוראת מהקובץ
             Exelread("exchange.txt");
             //שליחה לפםונקצית מילוי
+            sort_dic = sort_dict(Dic_frequency);
 
         }
 
@@ -83,6 +85,15 @@ namespace frequency
             precent = Math.Round(precent, 2);
             Dic_text_frequency.Add(tav, precent);
         }
+
+        // ממינת את המילון לפי הערך
+        public static Dictionary<char, double> sort_dict(Dictionary<char, double> dict_to_sort)
+        {
+            return new Dictionary<char, double>(
+                from entry in Dic_text_frequency orderby entry.Value ascending select entry);
+        }
+
+
         //פענוח
         //מקבלת טקסט מוצפן מחזירה טקסט מפוענח
         public static string deciphering(string text)
@@ -95,10 +106,13 @@ namespace frequency
             while (tav <= 'ת')
                 freq_text(text, tav++);
             //שולח לפונקציה שמתאימה בין אחוזים של הטקסט והקובץ
-            var sort_dic = Dic_frequency.OrderByDescending(item => item.Value);
             //text.Replace()
+            Dictionary<char, double> sort_dic_text = sort_dict(Dic_text_frequency);
+           
+
             return answer;
       }
+        // לבדוק אותיות סופיות בטקסט המתקבל
 
        //אילו אותיות יש להחליף באילו אותיות
        //לאחר שמחליטים מה מחליפים במה להחליף את האותיות ע"פ מילון ההחלפה לפי האות שמחליפים בה בערך של האות האנגלית
@@ -107,6 +121,17 @@ namespace frequency
         //לשקול מילוי של מפתח הפיענוח במילון של 
         //char char
 
+
+
+
+
+
+
+        // לכתוב פונקציה שבונה מילון חדש המורכב מאיחוד המפתחות של המילונים הממוינים
+        // לכתוב פונקציה שמקבלת מילון הממוין שלעיל ומחליפה את הטקסט בהתאם
+        // פונקציה זו תיעזר בפונקציה נוספת של מילון העזר בשביל החלפת אות
+        // עוברים בלולאה על המילון לעיל ועבור כל מפתח מבצעים את ההחלפה בטקסט בפועל בעזרת הפונקציה לעיל של החלפת אות
+        // בדיקת הקוד על הרבה טקסטים ושמירת התוצאות........
     }
 
 }
