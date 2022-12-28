@@ -11,3 +11,17 @@ X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישרא
 X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\obj\Debug\netcoreapp3.1\frequency.pdb
 X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\obj\Debug\netcoreapp3.1\frequency.genruntimeconfig.cache
 X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\obj\Debug\netcoreapp3.1\frequency.csprojAssemblyReference.cache
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\bin\Debug\netcoreapp3.1\frequency.exe
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\bin\Debug\netcoreapp3.1\frequency.deps.json
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\bin\Debug\netcoreapp3.1\frequency.runtimeconfig.json
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\bin\Debug\netcoreapp3.1\frequency.runtimeconfig.dev.json
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\bin\Debug\netcoreapp3.1\frequency.dll
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\bin\Debug\netcoreapp3.1\frequency.pdb
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\obj\Debug\netcoreapp3.1\frequency.csproj.AssemblyReference.cache
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\obj\Debug\netcoreapp3.1\frequency.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\obj\Debug\netcoreapp3.1\frequency.AssemblyInfoInputs.cache
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\obj\Debug\netcoreapp3.1\frequency.AssemblyInfo.cs
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\obj\Debug\netcoreapp3.1\frequency.csproj.CoreCompileInputs.cache
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\obj\Debug\netcoreapp3.1\frequency.dll
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\obj\Debug\netcoreapp3.1\frequency.pdb
+C:\Users\CAD\Documents\שושנה חיה\project\DecodingCiphers\frequency\obj\Debug\netcoreapp3.1\frequency.genruntimeconfig.cache

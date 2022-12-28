@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Linq;
-
+using static System.Net.Mime.MediaTypeNames;
+using System.Data;
+using System.Windows;
 namespace frequency
 {
    public class  Translate
@@ -14,6 +16,11 @@ namespace frequency
         static Dictionary<char, double> Dic_text_frequency;
         //מילון החלפות
         static Dictionary<char, char> Dic_exchange;
+        //מילון נסיון של החלפות
+        static Dictionary<char, char> Dic_exper_exchange;
+        static Dictionary<char, double> sort_dic_text;
+        static Dictionary<char, double> sort_dic;
+
 
         //פןנקציה המקבלת שורה בטבלה וממלאה את המילון
         public static void Table_Freq(string  str, string name)
@@ -21,7 +28,7 @@ namespace frequency
             string [] strWords;
             strWords = str.Split(',');
             string spl = strWords[1].Substring(0, strWords[1].Length - 1);
-            if (name== "letters.txt") { 
+            if (name== "letters1 (3).txt") { 
             double num = double.Parse(spl);
             //מילוי המילון של השכיחיות
             Dic_frequency.Add(char.Parse(strWords[0]), num);}
@@ -37,16 +44,12 @@ namespace frequency
         {
             //ממלא את המילון לפי הקובץ
             Dic_frequency = new Dictionary<char, double>();
-            Dictionary<char, double> sort_dic = new Dictionary<char, double>();
             //קריאה לפונקציה שקוראת מהקובץ
-            Exelread("letters.txt");
+            Exelread("letters1 (3).txt");
             //ממלא את המילון  ההחלפה לפי הקובץ
             Dic_exchange = new Dictionary<char, char>();
             //קריאה לפונקציה שקוראת מהקובץ
-            Exelread("exchange.txt");
-            //שליחה לפםונקצית מילוי
-            sort_dic = sort_dict(Dic_frequency);
-
+            Exelread("exchange1.txt");
         }
 
 
@@ -68,7 +71,7 @@ namespace frequency
         public static void Exelread( string name)
         {
             //קורא את הקובץ שכיחויות
-            string str = File.ReadAllText(@"X:\הנדסאים שנה ב תשפג\פרויקטים\שושנה חיה ישראלוב\frequency\frequency\"+name, Encoding.UTF8);
+            string str = File.ReadAllText(@"C:\" + name, Encoding.UTF8);
             string[] strSentense;
             //חותך את הקובץ למשפטים
             strSentense = str.Split('\n');
@@ -77,10 +80,28 @@ namespace frequency
                 Table_Freq(item,name);
         }
 
-        // לפונקציה שממלאת את המילון לפי הטקסט
+
+        //אפשר לקצר את הפונקציה?
+        //לבדוק אותיות סופיות בטקסט המתקבל//
+        //לפונקציה שממלאת את המילון לפי הטקסט
         public static void freq_text(string text,char tav)
         {
-            double precent = freq(text, tav);
+            double precent;
+            //switch (tav)
+            //{
+            //    case 'ך':
+            //        precent= freq(text, 'כ'); break;
+            //    case 'ם':
+            //        precent= freq(text, 'מ'); break;
+            //    case 'ן':
+            //        precent= freq(text, 'נ'); break;
+            //    case 'ף':
+            //        precent = freq(text, 'פ'); break;
+            //    case 'ץ':
+            //        precent = freq(text, 'צ'); break;
+            //    default:
+                    precent = freq(text, tav); //break;
+            //}
             //שמירה של 2 ספרות לאחר הנקודה העשרונית
             precent = Math.Round(precent, 2);
             Dic_text_frequency.Add(tav, precent);
@@ -90,7 +111,7 @@ namespace frequency
         public static Dictionary<char, double> sort_dict(Dictionary<char, double> dict_to_sort)
         {
             return new Dictionary<char, double>(
-                from entry in Dic_text_frequency orderby entry.Value ascending select entry);
+                from entry in dict_to_sort orderby entry.Value ascending select entry);
         }
 
 
@@ -103,25 +124,41 @@ namespace frequency
             char tav = 'א';
             string answer = text;
             //שולח לפונקציה שממלאת את המילון לפי הטקסט
-            while (tav <= 'ת')
+            while (tav <= 'ת') {
+                if (tav == 'ם' || tav == 'ך' || tav == 'ץ' || tav == 'ן' || tav == 'ף')
+                {
+                    tav++;
+                    continue;
+                }
                 freq_text(text, tav++);
+            }
             //שולח לפונקציה שמתאימה בין אחוזים של הטקסט והקובץ
             //text.Replace()
-            Dictionary<char, double> sort_dic_text = sort_dict(Dic_text_frequency);
-           
-
+            //מיון של מילון הטקסט והשכיחויות לפי הערך
+             sort_dic_text = sort_dict(Dic_text_frequency);
+             sort_dic = sort_dict(Dic_frequency);
+            //פונקציה שמתאימה בין האותיות להחלפה
+            Match();
             return answer;
-      }
-        // לבדוק אותיות סופיות בטקסט המתקבל
+        }
 
-       //אילו אותיות יש להחליף באילו אותיות
-       //לאחר שמחליטים מה מחליפים במה להחליף את האותיות ע"פ מילון ההחלפה לפי האות שמחליפים בה בערך של האות האנגלית
-       //אחרי שהעברנו הכל לאותיות אנגלית להחליף לאותיות עברית על פי הערך במילון ההחלפה
+
+        //אילו אותיות יש להחליף באילו אותיות
+        //לאחר שמחליטים מה מחליפים במה להחליף את האותיות ע"פ מילון ההחלפה לפי האות שמחליפים בה בערך של האות האנגלית
+        //אחרי שהעברנו הכל לאותיות אנגלית להחליף לאותיות עברית על פי הערך במילון ההחלפה
 
         //לשקול מילוי של מפתח הפיענוח במילון של 
         //char char
 
-
+        public static void Match()
+        {
+            Dic_exper_exchange = new Dictionary<char, char>();
+            for (int i = sort_dic.Count - 1; i >= 0; i--)
+            {
+                // Dic_exper_exchange.Add(sort_dic_text.FirstOrDefault(x => x.Value == i).Key, sort_dic.FirstOrDefault(x => x.Value == i).Key);
+                Dic_exper_exchange.Add( sort_dic_text.ElementAt(i).Key,sort_dic.ElementAt(i).Key);
+            }
+        }
 
 
 
