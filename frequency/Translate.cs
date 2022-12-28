@@ -28,7 +28,7 @@ namespace frequency
             string [] strWords;
             strWords = str.Split(',');
             string spl = strWords[1].Substring(0, strWords[1].Length - 1);
-            if (name== "letters1 (3).txt") { 
+            if (name== "letters_avg.txt") { 
             double num = double.Parse(spl);
             //מילוי המילון של השכיחיות
             Dic_frequency.Add(char.Parse(strWords[0]), num);}
@@ -45,13 +45,13 @@ namespace frequency
             //ממלא את המילון לפי הקובץ
             Dic_frequency = new Dictionary<char, double>();
             //קריאה לפונקציה שקוראת מהקובץ
-            Exelread("letters1 (3).txt");
+            Exelread("letters_avg.txt");
             //ממלא את המילון  ההחלפה לפי הקובץ
             Dic_exchange = new Dictionary<char, char>();
             //קריאה לפונקציה שקוראת מהקובץ
-            Exelread("exchange1.txt");
+            Exelread("exchange.txt");
         }
-
+      
 
         //פונקציה שמקבלת אות וטקסט ומחזירה את השכיחות של האות בטקסט באחוזים
         public static double freq(string text, char ch)
@@ -120,7 +120,7 @@ namespace frequency
         public static string deciphering(string text)
         {
             Dic_text_frequency = new Dictionary<char, double>();
-            text = text.Replace(" ", "");
+            //text = text.Replace(" ", "");
             char tav = 'א';
             string answer = text;
             //שולח לפונקציה שממלאת את המילון לפי הטקסט
@@ -139,6 +139,7 @@ namespace frequency
              sort_dic = sort_dict(Dic_frequency);
             //פונקציה שמתאימה בין האותיות להחלפה
             Match();
+            answer = ReplaceText(answer);
             return answer;
         }
 
@@ -155,15 +156,26 @@ namespace frequency
             Dic_exper_exchange = new Dictionary<char, char>();
             for (int i = sort_dic.Count - 1; i >= 0; i--)
             {
-                // Dic_exper_exchange.Add(sort_dic_text.FirstOrDefault(x => x.Value == i).Key, sort_dic.FirstOrDefault(x => x.Value == i).Key);
                 Dic_exper_exchange.Add( sort_dic_text.ElementAt(i).Key,sort_dic.ElementAt(i).Key);
             }
         }
 
 
+        public static string ReplaceText(string answer)
+        {
+            foreach (var item in Dic_exper_exchange)
+            {
+                char ch = Dic_exchange[item.Value]; 
+                answer = answer.Replace(item.Key, ch);
+            }
+            foreach (var item in Dic_exchange)
+            {
+                answer = answer.Replace(item.Value,item.Key);
+            }
+            return answer;
+        }
 
-
-
+       
         // לכתוב פונקציה שבונה מילון חדש המורכב מאיחוד המפתחות של המילונים הממוינים
         // לכתוב פונקציה שמקבלת מילון הממוין שלעיל ומחליפה את הטקסט בהתאם
         // פונקציה זו תיעזר בפונקציה נוספת של מילון העזר בשביל החלפת אות
