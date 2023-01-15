@@ -8,8 +8,10 @@ using System.Data;
 using System.Windows;
 namespace frequency
 {
-   public class  Translate
+    public class Translate
     {
+        //מילון של האותיות והערך המספרי שלהם-גימטריה
+        static Dictionary<char, int> Dic_gimatry;
         //מילון של האותיות ושכיחות של כל אות
         static Dictionary<char, double> Dic_frequency;
         //מילון של שכיחות של כל אות בטקסט
@@ -23,21 +25,30 @@ namespace frequency
 
 
         //פןנקציה המקבלת שורה בטבלה וממלאה את המילון
-        public static void Table_Freq(string  str, string name)
+        public static void Table_Freq(string str, string name)
         {
-            string [] strWords;
+            string[] strWords;
             strWords = str.Split(',');
             string spl = strWords[1].Substring(0, strWords[1].Length - 1);
-            if (name== "letters_avg.txt") { 
-            double num = double.Parse(spl);
-            //מילוי המילון של השכיחיות
-            Dic_frequency.Add(char.Parse(strWords[0]), num);}
-            else
-                //מילוי המילון של ההחלפות
-            Dic_exchange.Add(char.Parse(strWords[0]), char.Parse(spl));
+            switch (name)
+            {
+                case "letters.txt":
+                    double num = double.Parse(spl);
+                    //מילוי המילון של השכיחיות
+                    Dic_frequency.Add(char.Parse(strWords[0]), num);
+                    break;
+                case "exchange.txt":
+                    //מילוי המילון של ההחלפות
+                    Dic_exchange.Add(char.Parse(strWords[0]), char.Parse(spl));
+                    break;
+                case "gimatry.txt":
+                    //מילוי המילון של הערך המספרי
+                    Dic_gimatry.Add(char.Parse(strWords[0]), Convert.ToInt32(spl));
+                    break;
+            }
         }
-    
-        
+
+
         //פונקציה שמקבלת שכיחות ומחזירה אות משוערת 
 
         static Translate()
@@ -45,13 +56,16 @@ namespace frequency
             //ממלא את המילון לפי הקובץ
             Dic_frequency = new Dictionary<char, double>();
             //קריאה לפונקציה שקוראת מהקובץ
-            Exelread("letters_avg.txt");
+            Exelread("letters.txt");
             //ממלא את המילון  ההחלפה לפי הקובץ
             Dic_exchange = new Dictionary<char, char>();
             //קריאה לפונקציה שקוראת מהקובץ
             Exelread("exchange.txt");
+            Dic_gimatry = new Dictionary<char, int>();
+            //קריאה לפונקציה שקוראת מהקובץ
+            Exelread("gimatry.txt");
         }
-      
+
 
         //פונקציה שמקבלת אות וטקסט ומחזירה את השכיחות של האות בטקסט באחוזים
         public static double freq(string text, char ch)
@@ -62,13 +76,13 @@ namespace frequency
                 if (text[i] == ch)
                     count++;
             //מחזירה את השכיחות של האות בטקסט באחוזים
-            double p = count *100;
-            return p/text.Length;
-           
+            double p = count * 100;
+            return p / text.Length;
+
         }
 
 
-        public static void Exelread( string name)
+        public static void Exelread(string name)
         {
             //קורא את הקובץ שכיחויות
             string str = File.ReadAllText(@"C:\" + name, Encoding.UTF8);
@@ -77,14 +91,14 @@ namespace frequency
             strSentense = str.Split('\n');
             //לולאה שעוברת על המשפטים ושולחת אותן לפונקציה שיוצרת טבלת שכיחויות
             foreach (var item in strSentense)
-                Table_Freq(item,name);
+                Table_Freq(item, name);
         }
 
 
         //אפשר לקצר את הפונקציה?
         //לבדוק אותיות סופיות בטקסט המתקבל//
         //לפונקציה שממלאת את המילון לפי הטקסט
-        public static void freq_text(string text,char tav)
+        public static void freq_text(string text, char tav)
         {
             double precent;
             //switch (tav)
@@ -100,7 +114,7 @@ namespace frequency
             //    case 'ץ':
             //        precent = freq(text, 'צ'); break;
             //    default:
-                    precent = freq(text, tav); //break;
+            precent = freq(text, tav); //break;
             //}
             //שמירה של 2 ספרות לאחר הנקודה העשרונית
             precent = Math.Round(precent, 2);
@@ -124,7 +138,8 @@ namespace frequency
             char tav = 'א';
             string answer = text;
             //שולח לפונקציה שממלאת את המילון לפי הטקסט
-            while (tav <= 'ת') {
+            while (tav <= 'ת')
+            {
                 if (tav == 'ם' || tav == 'ך' || tav == 'ץ' || tav == 'ן' || tav == 'ף')
                 {
                     tav++;
@@ -135,10 +150,11 @@ namespace frequency
             //שולח לפונקציה שמתאימה בין אחוזים של הטקסט והקובץ
             //text.Replace()
             //מיון של מילון הטקסט והשכיחויות לפי הערך
-             sort_dic_text = sort_dict(Dic_text_frequency);
-             sort_dic = sort_dict(Dic_frequency);
+            sort_dic_text = sort_dict(Dic_text_frequency);
+            sort_dic = sort_dict(Dic_frequency);
             //פונקציה שמתאימה בין האותיות להחלפה
             Match();
+            Legality();
             answer = ReplaceText(answer);
             return answer;
         }
@@ -156,26 +172,58 @@ namespace frequency
             Dic_exper_exchange = new Dictionary<char, char>();
             for (int i = sort_dic.Count - 1; i >= 0; i--)
             {
-                Dic_exper_exchange.Add( sort_dic_text.ElementAt(i).Key,sort_dic.ElementAt(i).Key);
+                Dic_exper_exchange.Add(sort_dic_text.ElementAt(i).Key, sort_dic.ElementAt(i).Key);
             }
         }
 
+        //פונקציה הבודקת חוקיות בין המפענחים
+        public static void Legality()
+        { //מערך חוקיות
+            List<int> arrLegality = new List<int>();
+            foreach (var item in Dic_exper_exchange)
+            {
+                arrLegality.Add(Dic_gimatry[item.Key] + Dic_gimatry[item.Value]);
+            }
+            //מציאת החוקיות
+            FindingSeries(arrLegality);
+        }
 
+        //מציאת החוקיות
+        public static void FindingSeries(List<int> arrLegality)
+        {//למצוא את המרחק הקבוע ביותר
+            arrLegality.Sort();
+            int a1 = arrLegality[0];
+            int d = arrLegality[1] - a1;
+            int an = a1;
+            int index;
+            for (int j = 0; j < arrLegality.Count; j++)
+            {
+                for (int i = 0; i < arrLegality.Count; i++)
+                {
+                    index = arrLegality.IndexOf(an + d);
+                    if (index == -1)
+                        break;
+                    an = arrLegality[index];
+                }
+            }
+
+
+        }
         public static string ReplaceText(string answer)
         {
             foreach (var item in Dic_exper_exchange)
             {
-                char ch = Dic_exchange[item.Value]; 
+                char ch = Dic_exchange[item.Value];
                 answer = answer.Replace(item.Key, ch);
             }
             foreach (var item in Dic_exchange)
             {
-                answer = answer.Replace(item.Value,item.Key);
+                answer = answer.Replace(item.Value, item.Key);
             }
             return answer;
         }
 
-       
+
         // לכתוב פונקציה שבונה מילון חדש המורכב מאיחוד המפתחות של המילונים הממוינים
         // לכתוב פונקציה שמקבלת מילון הממוין שלעיל ומחליפה את הטקסט בהתאם
         // פונקציה זו תיעזר בפונקציה נוספת של מילון העזר בשביל החלפת אות

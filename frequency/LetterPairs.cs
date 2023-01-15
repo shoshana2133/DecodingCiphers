@@ -24,6 +24,13 @@ namespace frequency
                     Dic_LetterPairs.Add(text[i] + "" + text[i + 1], 1);
             }
                Dic_LetterPairs.Max(x => x.Value);
+            List<string> ss = new List<string>();
+            foreach (var item in Dic_LetterPairs)
+            {
+                string s = item.Key;
+                if (s[0] == s[1])
+                    ss.Add(s);
+            }
         }
     }
 }
