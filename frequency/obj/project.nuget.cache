@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "M8WbPfroITbqlVuUePvdWvq5EMzB1z9tJ9mTyHM+cWv4UhyT7bZ/BSb/DEQa/jFOzLTc1UXiur2/zTfB4T/W2g==",
+  "dgSpecHash": "lt/oQvR2ADMvrtTWv2IKR/9Rg0PsAyy6sqgJB0qmNrTQ3h/2HRbgaiG1eAkap8rCcI/KztZxSAd10BASvmNrXA==",
   "success": true,
   "projectFilePath": "X:\\הנדסאים שנה ב תשפג\\פרויקטים\\שושנה חיה ישראלוב\\frequency\\frequency\\frequency.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\comp2\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\comp2\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.32\\microsoft.netcore.app.host.win-x64.3.1.32.nupkg.sha512"
+  ],
   "logs": []
 }

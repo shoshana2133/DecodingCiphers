@@ -32,7 +32,7 @@ namespace frequency
             string spl = strWords[1].Substring(0, strWords[1].Length - 1);
             switch (name)
             {
-                case "letters.txt":
+                case "letters1.txt":
                     double num = double.Parse(spl);
                     //מילוי המילון של השכיחיות
                     Dic_frequency.Add(char.Parse(strWords[0]), num);
@@ -56,7 +56,7 @@ namespace frequency
             //ממלא את המילון לפי הקובץ
             Dic_frequency = new Dictionary<char, double>();
             //קריאה לפונקציה שקוראת מהקובץ
-            Exelread("letters.txt");
+            Exelread("letters1.txt");
             //ממלא את המילון  ההחלפה לפי הקובץ
             Dic_exchange = new Dictionary<char, char>();
             //קריאה לפונקציה שקוראת מהקובץ
@@ -85,7 +85,7 @@ namespace frequency
         public static void Exelread(string name)
         {
             //קורא את הקובץ שכיחויות
-            string str = File.ReadAllText(@"C:\" + name, Encoding.UTF8);
+            string str = File.ReadAllText(@"C:\" + name, Encoding.UTF8);                                                                                                              
             string[] strSentense;
             //חותך את הקובץ למשפטים
             strSentense = str.Split('\n');
@@ -154,7 +154,7 @@ namespace frequency
             sort_dic = sort_dict(Dic_frequency);
             //פונקציה שמתאימה בין האותיות להחלפה
             Match();
-            Legality();
+            /*Legality();*/
             answer = ReplaceText(answer);
             return answer;
         }
@@ -177,38 +177,38 @@ namespace frequency
         }
 
         //פונקציה הבודקת חוקיות בין המפענחים
-        public static void Legality()
-        { //מערך חוקיות
-            List<int> arrLegality = new List<int>();
-            foreach (var item in Dic_exper_exchange)
-            {
-                arrLegality.Add(Dic_gimatry[item.Key] + Dic_gimatry[item.Value]);
-            }
-            //מציאת החוקיות
-            FindingSeries(arrLegality);
-        }
+        //public static void Legality()
+        //{ //מערך חוקיות
+        //    List<int> arrLegality = new List<int>();
+        //    foreach (var item in Dic_exper_exchange)
+        //    {
+        //        arrLegality.Add(Dic_gimatry[item.Key] + Dic_gimatry[item.Value]);
+        //    }
+        //    מציאת החוקיות
+        //    FindingSeries(arrLegality);
+        //}
 
         //מציאת החוקיות
-        public static void FindingSeries(List<int> arrLegality)
-        {//למצוא את המרחק הקבוע ביותר
-            arrLegality.Sort();
-            int a1 = arrLegality[0];
-            int d = arrLegality[1] - a1;
-            int an = a1;
-            int index;
-            for (int j = 0; j < arrLegality.Count; j++)
-            {
-                for (int i = 0; i < arrLegality.Count; i++)
-                {
-                    index = arrLegality.IndexOf(an + d);
-                    if (index == -1)
-                        break;
-                    an = arrLegality[index];
-                }
-            }
+        //public static void FindingSeries(List<int> arrLegality)
+        //{//למצוא את המרחק הקבוע ביותר
+        //    arrLegality.Sort();
+        //    int a1 = arrLegality[0];
+        //    int d = arrLegality[1] - a1;
+        //    int an = a1;
+        //    int index;
+        //    for (int j = 0; j < arrLegality.Count; j++)
+        //    {
+        //        for (int i = 0; i < arrLegality.Count; i++)
+        //        {
+        //            index = arrLegality.IndexOf(an + d);
+        //            if (index == -1)
+        //                break;
+        //            an = arrLegality[index];
+        //        }
+        //    }
 
 
-        }
+        //}
         public static string ReplaceText(string answer)
         {
             foreach (var item in Dic_exper_exchange)
