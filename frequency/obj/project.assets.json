@@ -8,24 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\comp2\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\The user\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "X:\\הנדסאים שנה ב תשפג\\פרויקטים\\שושנה חיה ישראלוב\\frequency\\frequency\\frequency.csproj",
+      "projectUniqueName": "C:\\Users\\The user\\Documents\\לימודים\\פרויקט\\DecodingCiphers\\frequency\\frequency.csproj",
       "projectName": "frequency",
-      "projectPath": "X:\\הנדסאים שנה ב תשפג\\פרויקטים\\שושנה חיה ישראלוב\\frequency\\frequency\\frequency.csproj",
-      "packagesPath": "C:\\Users\\comp2\\.nuget\\packages\\",
-      "outputPath": "X:\\הנדסאים שנה ב תשפג\\פרויקטים\\שושנה חיה ישראלוב\\frequency\\frequency\\obj\\",
+      "projectPath": "C:\\Users\\The user\\Documents\\לימודים\\פרויקט\\DecodingCiphers\\frequency\\frequency.csproj",
+      "packagesPath": "C:\\Users\\The user\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\The user\\Documents\\לימודים\\פרויקט\\DecodingCiphers\\frequency\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\comp2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\The user\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,16 +56,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.10, 3.1.10]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.1.32, 3.1.32]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"

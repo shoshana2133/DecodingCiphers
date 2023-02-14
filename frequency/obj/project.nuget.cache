@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lt/oQvR2ADMvrtTWv2IKR/9Rg0PsAyy6sqgJB0qmNrTQ3h/2HRbgaiG1eAkap8rCcI/KztZxSAd10BASvmNrXA==",
+  "dgSpecHash": "EGv4lTirM3Piad/SlGe1NxIwxB+BhwWXjkdLrJNKvS1jTx6bHLctpIpYZei71DbkjhxhBY6kLgoqd4S2YI0F9g==",
   "success": true,
-  "projectFilePath": "X:\\הנדסאים שנה ב תשפג\\פרויקטים\\שושנה חיה ישראלוב\\frequency\\frequency\\frequency.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\comp2\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
-    "C:\\Users\\comp2\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.32\\microsoft.netcore.app.host.win-x64.3.1.32.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\The user\\Documents\\לימודים\\פרויקט\\DecodingCiphers\\frequency\\frequency.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
