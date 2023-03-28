@@ -19,8 +19,9 @@ namespace frequency
             // Ciphers.CaesarCipher(text);
             //text = Ciphers.MergeLetters("איזהטובהתודהלכ");
             //text1 = Ciphers.DecodeString(text);
-            text = Ciphers.ColumnarTranspositionEncrypt("שלומעליכממלאכיהשלוממלאכיעליונמלכמלכיהמלכימהקדושברוכהוא",4);
-            text1= Ciphers.ColumnTranspositionDecoding(text,4);
+            // text = Ciphers.ColumnarTranspositionEncrypt("שלומעליכממלאכיהשלוממלאכיעליונמלכמלכיהמלכימהקדושברוכהוא",4);
+            // text1= Ciphers.ColumnTranspositionDecoding(text,4);
+            text = CutWords.DivisionIntoProfits("הלכתיהיומלקנותנעליים");
             Console.ReadLine();
             
         }
