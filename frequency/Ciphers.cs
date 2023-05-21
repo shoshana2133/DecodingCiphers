@@ -8,7 +8,7 @@ namespace frequency
     public class Ciphers
     {
         //את בש
-        public static string Decipher(string cipher)
+        public static string DecipherATBS(string cipher)
         {
             string deciphered_text = "";
             string alphabet = "אבגדהוזחטיכלמנסעפצקרשת";
@@ -98,7 +98,7 @@ namespace frequency
             return sb.ToString();
         }
         //פיענוח גדר
-        public static string DecodeString(string text)
+        public static string DecodeStringGader(string text)
         {
             int len = text.Length;
 

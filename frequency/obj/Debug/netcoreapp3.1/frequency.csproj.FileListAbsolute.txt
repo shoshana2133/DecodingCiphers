@@ -40,3 +40,5 @@ C:\Users\The user\Documents\לימודים\פרויקט\DecodingCiphers\frequenc
 C:\Users\The user\Documents\לימודים\פרויקט\DecodingCiphers\frequency\obj\Debug\netcoreapp3.1\frequency.dll
 C:\Users\The user\Documents\לימודים\פרויקט\DecodingCiphers\frequency\obj\Debug\netcoreapp3.1\frequency.pdb
 C:\Users\The user\Documents\לימודים\פרויקט\DecodingCiphers\frequency\obj\Debug\netcoreapp3.1\frequency.genruntimeconfig.cache
+C:\Users\The user\Documents\לימודים\פרויקט\DecodingCiphers\frequency\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\The user\Documents\לימודים\פרויקט\DecodingCiphers\frequency\obj\Debug\netcoreapp3.1\frequency.csproj.CopyComplete

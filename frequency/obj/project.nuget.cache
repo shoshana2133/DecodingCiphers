@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "YYeXDBnbqhZmKyVLUcq8tbYOfJ94Ci5TR1cNbdAKZ3NT3kXtkoLU8cy72dUef/OSfAahvkxYV28OFrIF53y+EA==",
+  "dgSpecHash": "Hx+z18Wx32UHgzWA0V8t+m7JIZ/GQvbp2AX+rH/vHS5MC28HS/z7EX4/V3amJzdb313UO/mUSW7XLHQI9lthgQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\The user\\Documents\\לימודים\\פרויקט\\DecodingCiphers\\frequency\\frequency.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\The user\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -19,8 +19,9 @@ namespace frequency
         //מילון החלפות
         static Dictionary<char, char> Dic_exchange;
         //מילון נסיון של החלפות
-        static Dictionary<char, char> Dic_exper_exchange;
-        static Dictionary<char, double> sort_dic_text;
+        public static Dictionary<char, char> Dic_exper_exchange { get; set; }
+        //static Dictionary<char, char> Dic_exper_exchange;
+        public static Dictionary<char, double> sort_dic_text;
         static Dictionary<char, double> sort_dic;
 
 
@@ -32,7 +33,7 @@ namespace frequency
             string spl = strWords[1].Substring(0, strWords[1].Length - 1);
             switch (name)
             {
-                case "letters1.txt":
+                case "l_c.txt":
                     double num = double.Parse(spl);
                     //מילוי המילון של השכיחיות
                     Dic_frequency.Add(char.Parse(strWords[0]), num);
@@ -49,14 +50,12 @@ namespace frequency
         }
 
 
-        //פונקציה שמקבלת שכיחות ומחזירה אות משוערת 
-
         static Translate()
         {
             //ממלא את המילון לפי הקובץ
             Dic_frequency = new Dictionary<char, double>();
             //קריאה לפונקציה שקוראת מהקובץ
-            Exelread("letters1.txt");
+            Exelread("l_c.txt");
             //ממלא את המילון  ההחלפה לפי הקובץ
             Dic_exchange = new Dictionary<char, char>();
             //קריאה לפונקציה שקוראת מהקובץ
@@ -85,7 +84,7 @@ namespace frequency
         public static void Exelread(string name)
         {
             //קורא את הקובץ שכיחויות
-            string str = File.ReadAllText(@"C:\" + name, Encoding.UTF8);                                                                                                              
+            string str = File.ReadAllText(@"C:\" + name, Encoding.UTF8);
             string[] strSentense;
             //חותך את הקובץ למשפטים
             strSentense = str.Split('\n');
@@ -124,6 +123,7 @@ namespace frequency
         // ממינת את המילון לפי הערך
         public static Dictionary<char, double> sort_dict(Dictionary<char, double> dict_to_sort)
         {
+            
             return new Dictionary<char, double>(
                 from entry in dict_to_sort orderby entry.Value ascending select entry);
         }
@@ -131,7 +131,8 @@ namespace frequency
 
         //פענוח
         //מקבלת טקסט מוצפן מחזירה טקסט מפוענח
-        public static string deciphering(string text)
+        // public static string deciphering(string text)
+        public static void deciphering(string text)
         {
             Dic_text_frequency = new Dictionary<char, double>();
             //text = text.Replace(" ", "");
@@ -151,12 +152,14 @@ namespace frequency
             //text.Replace()
             //מיון של מילון הטקסט והשכיחויות לפי הערך
             sort_dic_text = sort_dict(Dic_text_frequency);
+            sort_dic_text.Reverse();
             sort_dic = sort_dict(Dic_frequency);
+            sort_dic.Reverse();
             //פונקציה שמתאימה בין האותיות להחלפה
             Match();
             /*Legality();*/
-            answer = ReplaceText(answer);
-            return answer;
+            //  answer = ReplaceText(answer);
+            // return answer;
         }
 
 

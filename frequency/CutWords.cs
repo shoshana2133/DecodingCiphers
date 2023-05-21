@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Linq;
+using System.ComponentModel.Design;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace frequency
 {
@@ -12,20 +14,20 @@ namespace frequency
         static Stack<int> Spaces = new Stack<int>();
         static int basic = 0;
         static int index=2, max = 10, x;
-        static string[] HebrewDictionary = {"הלכ","הלכת","הלכתי","לק","הי","היומ","לקנות","נעל","נעליים","נותנ","שר","חם","ילד","מודה","לד","שרה","הילדה","הכי","כי","חמודה","יהיו"};
-        //   static bool flag = false;
+        static string[] HebrewDictionary;
+     //   static string[] HebrewDictionary = {"הלכ","הלכת","הלכתי","לק","הי","היומ","לקנות","נעל","נעליים","נותנ","שר","חם","ילד","מודה","לד","שרה","הילדה","הכי","כי","חמודה","יהיו"};
         static string copyText="";
         //בנאי סטטי 
         static CutWords()
         {
-        //    Exelread();
+            Exelread();
             int size = HebrewDictionary.Length;
         }
         //פונקציה לניהול חלוקת מילים
         public static string DivisionIntoProfits(string text)
         {
             copyText = text;
-
+         
             while (copyText.Length > 0)
             { 
                 string previusText = copyText;
@@ -57,8 +59,7 @@ namespace frequency
             basic = Spaces.Peek()+1;
             //  flag= false;
         }
-
-            return copyText;
+            return PutSpace(text); 
         }
 
         //פונקציה למציאת מילים ודחיפת מיקום סוף מילה למחסנית
@@ -75,6 +76,7 @@ namespace frequency
                 i++;
             }
             index = i;
+
             return text;
         }
 
@@ -88,17 +90,43 @@ namespace frequency
             }
             return false;
         }
-
         public static void Exelread()
         {
+           
             //קורא את הקובץ מילון עברי
-           // string str = File.ReadAllText(@"C:\Hebrew dictionary.txt", Encoding.UTF8);
-            //חותך את הקובץ למילים
-            //HebrewDictionary = str.Split('\n');
-            //for (int i = 0; i < HebrewDictionary.Length; i++)
-            //{
-            //    HebrewDictionary[i] = HebrewDictionary[i].Substring(0, HebrewDictionary[i].Length - 1);
-            //}
+            string str = File.ReadAllText(@"D:\ee.txt", Encoding.UTF8);
+           // if(str.Contains('ף')
+                //use the non end leters file
+           //  חותך את הקובץ למילים
+            HebrewDictionary = str.Split('\n');
+            for (int i = 0; i < HebrewDictionary.Length; i++)
+            {
+                HebrewDictionary[i] = HebrewDictionary[i].Substring(0, HebrewDictionary[i].Length - 1);
+            }
+        
+        }
+       public void ChangeEnd()
+        {
+
+            //File.ReadAllText();
+            //string str = "וף ןל מם";
+            //str = str.Replace('ף', 'פ');
+            //File.WriteAllText(path, str);
+        }
+        public static string PutSpace(string text)
+        {
+            int i = Spaces.Count-1;
+            int buf=0;
+            string str=null;
+            while(text!=null) {
+            str += text.Substring(0,Spaces.ElementAt(i)+1-(buf));
+            text =text.Substring(Spaces.ElementAt(i)+1 - buf);
+            buf = Spaces.ElementAt(i)+1;
+            str += " ";
+            i--;
+            }
+            
+            return str;
         }
     }
 }
