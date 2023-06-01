@@ -100,24 +100,29 @@ namespace frequency
         public static void freq_text(string text, char tav)
         {
             double precent;
-            //switch (tav)
-            //{
-            //    case 'ך':
-            //        precent= freq(text, 'כ'); break;
-            //    case 'ם':
-            //        precent= freq(text, 'מ'); break;
-            //    case 'ן':
-            //        precent= freq(text, 'נ'); break;
-            //    case 'ף':
-            //        precent = freq(text, 'פ'); break;
-            //    case 'ץ':
-            //        precent = freq(text, 'צ'); break;
-            //    default:
-            precent = freq(text, tav); //break;
-            //}
+            switch (tav)
+            {
+                case 'ך':
+                    tav = 'כ';
+                    precent = freq(text, tav); break;
+                case 'ם':
+                    tav = 'מ';
+                    precent = freq(text, tav); break;
+                case 'ן':
+                    tav = 'נ';
+                    precent = freq(text, tav); break;
+                case 'ף':
+                    tav = 'פ';
+                    precent = freq(text, tav); break;
+                case 'ץ':
+                    tav = 'צ';
+                    precent = freq(text, tav); break;
+                default:
+                    precent = freq(text, tav); break;
+            }
             //שמירה של 2 ספרות לאחר הנקודה העשרונית
             precent = Math.Round(precent, 2);
-            Dic_text_frequency.Add(tav, precent);
+            Dic_text_frequency.TryAdd(tav, precent);
         }
 
         // ממינת את המילון לפי הערך
@@ -141,11 +146,11 @@ namespace frequency
             //שולח לפונקציה שממלאת את המילון לפי הטקסט
             while (tav <= 'ת')
             {
-                if (tav == 'ם' || tav == 'ך' || tav == 'ץ' || tav == 'ן' || tav == 'ף')
-                {
-                    tav++;
-                    continue;
-                }
+                //if (tav == 'ם' || tav == 'ך' || tav == 'ץ' || tav == 'ן' || tav == 'ף')
+                //{
+                //    tav++;
+                //    continue;
+                //}
                 freq_text(text, tav++);
             }
             //שולח לפונקציה שמתאימה בין אחוזים של הטקסט והקובץ

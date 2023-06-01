@@ -12,65 +12,102 @@ namespace frequency
     public class ProjectManagement
     {
         public static d D_F { get; set; }
-        static MethodInfo[] m; 
-        public static List<Function> ReadFromJsonFile(string filePath)
+        static MethodInfo[] m;
+        static List<Function> data;
+        public static void ReadFromJsonFile(string filePath)
         {
             // Read the JSON data from the file
             string json = File.ReadAllText(filePath);
 
             // Deserialize the JSON data into a list of Function objects
-            List<Function> data = JsonConvert.DeserializeObject<List<Function>>(json);
-            data= data.OrderBy(c=>c.NumPlates).ToList();
-            return data;
-            
+            data = JsonConvert.DeserializeObject<List<Function>>(json);
+            data = data.OrderBy(c => c.NumPlates).ToList();
+            //return data;
+
         }
 
         public static void Load()
         {
             m = typeof(ProjectManagement).GetMethods();
-            List<Function> data=ReadFromJsonFile(@"D:\file.json");
-            for (int i = 0; i <data.Count; i++)
-            {
-                D_F +=(d) m.FirstOrDefault(item => item.Name == data[i].NameFunc).CreateDelegate(typeof(d));
-           
+            ReadFromJsonFile(@"D:\file.json");
 
-            }
+            D_F += DivisionIntoProfits;
+            D_F += DecipherATBS;
+            D_F += CaesarCipher;
+            D_F += DecodeStringGader;
+            D_F += ColumnTranspositionDecoding;
+            D_F += DecodingManagment;
+
+
         }
-
-        public string DivisionIntoProfits(string text)
+        public static string Manage(string text)
+        {
+            string decode = "";
+            for (int i = 0; i < data.Count; i++)
+            {
+                decode = start(data[i].NameFunc, text);
+                if (decode != "")
+                {   //עדכון מספר פעמים ותאריך אחרון לקובץ
+                    // Increment the 'num' field by 1
+                    data[i].NumPlates++;
+                    // Set the 'date' field to the current date
+                    data[i].DatePlate = DateTime.Now.ToString("yyyy-MM-dd");
+                    // Serialize the updated object back to JSON and write it to the file
+                    File.WriteAllText(@"D:\file.json", JsonConvert.SerializeObject(data));
+                    return decode;
+                }
+            }
+            return "not found";
+        }
+        public static string DivisionIntoProfits(string text)
         {
             return CutWords.DivisionIntoProfits(text);
         }
-        public string DecipherATBS(string text)
+        public static string DecipherATBS(string text)
         {
             return Ciphers.DecipherATBS(text);
         }
-        //מה לעשות עם צופן קיסר יש לו הרבה הסטים
-        public void CaesarCipher(string text)
+        // צופן קיסר יש לו הרבה הסטים
+        public static string CaesarCipher(string text)
         {
-            Ciphers.CaesarCipher(text);
+            for (int i = 1; i < 22; i++)
+            {
+                text = Ciphers.DecipherCaesar(text, i);
+                text = CutWords.DivisionIntoProfits(text);
+                if (text != "")
+                    return text;
+
+            }
+            return "";
         }
 
-        public string DecodeStringGader(string text)
+        public static string DecodeStringGader(string text)
         {
             return Ciphers.DecodeStringGader(text);
         }
 
-        //מה לעשות מקבל מספר
-        public void ColumnTranspositionDecoding(string text)
-        {
-             Ciphers.ColumnTranspositionDecoding(text,1);
+        public static string ColumnTranspositionDecoding(string text)
+        {//מנסה מספר אפשרויות של חלוקת השורות
+            for (int i = 2; i < 10; i++)
+            {
+                text = Ciphers.ColumnTranspositionDecoding(text, i);
+                text = CutWords.DivisionIntoProfits(text);
+                if (text != "")
+                    return text;
+
+            }
+            return "";
         }
 
-        public string DecodingManagment(string text)
+        public static string DecodingManagment(string text)
         {
             return Replacement.DecodingManagment(text);
         }
-        string start(string name,string text)
-        { 
+        static string start(string name, string text)
+        {
             var l = D_F.GetInvocationList();
-           return (string) l.First(func => func.GetMethodInfo().Name == name).DynamicInvoke(text);
-        
+            return (string)l.First(func => func.GetMethodInfo().Name == name).DynamicInvoke(text);
+
         }
     }
 }
